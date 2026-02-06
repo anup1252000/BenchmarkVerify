@@ -22,10 +22,22 @@ namespace BenchmarkVerify
     [RPlotExporter]
     public class BootStrapper
     {
-        private StringJoinComparision join = new();
-        string[] str = new string[] { "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c","a", "b", "c",
-            "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", 
-            "a", "b", "c", "a", "b", "c" };
+        private readonly StringJoinComparision join = new();
+        private string[] str = Array.Empty<string>();
+        private readonly string[] seed = new[] { "a", "b", "c" };
+
+        [Params(0, 1, 3, 30, 300)]
+        public int Size { get; set; }
+
+        [GlobalSetup]
+        public void Setup()
+        {
+            str = new string[Size];
+            for (int i = 0; i < Size; i++)
+            {
+                str[i] = seed[i % seed.Length];
+            }
+        }
 
         [Benchmark]
         public void NormalJoin()
@@ -48,7 +60,6 @@ namespace BenchmarkVerify
 
     public class StringJoinComparision
     {
-        
         public string NormalJoin(string[] str)
         {
             string temp = string.Empty;
