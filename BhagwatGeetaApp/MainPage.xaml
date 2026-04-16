@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BhagwatGeetaApp.MainPage"
+             Title="Bhagwat Geeta">
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" Padding="20">
+            <Label Text="Bhagwat Geeta Companion"
+                   FontSize="24"
+                   FontAttributes="Bold" />
+            <Label Text="Explore highlighted chapters and verses for daily reflection."
+                   FontSize="14" />
+
+            <Frame BorderColor="{StaticResource Accent}"
+                   CornerRadius="12"
+                   Padding="16">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Select a chapter" FontAttributes="Bold" />
+                    <Picker x:Name="ChapterPicker"
+                            Title="Choose a chapter"
+                            SelectedIndexChanged="OnChapterChanged" />
+
+                    <Label Text="Select a verse" FontAttributes="Bold" />
+                    <Picker x:Name="VersePicker"
+                            Title="Choose a verse"
+                            SelectedIndexChanged="OnVerseChanged" />
+
+                    <Button Text="Show Random Verse"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White"
+                            Clicked="OnRandomVerseClicked" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="#FFF3E0" CornerRadius="12" Padding="16">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Verse" FontAttributes="Bold" FontSize="18" />
+                    <Label x:Name="VerseReferenceLabel" Text="Pick a verse to view the teaching." />
+                    <Label x:Name="VerseTextLabel" FontSize="16" LineHeight="1.4" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
